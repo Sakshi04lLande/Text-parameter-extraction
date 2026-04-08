@@ -1,16 +1,12 @@
-# Core NLP + Embeddings
 stanza==1.11.1
-sentence-transformers==2.2.2
+sentence-transformers==2.6.1
 torch==2.1.2
 transformers==4.41.2
-
-# Machine Learning / Math
 scikit-learn==1.3.2
 numpy==1.26.4
-
-# API & Utilities
 anthropic==0.7.8
 langdetect==1.0.9
-
-# Optional but recommended
 tqdm==4.66.2
+uvicorn==0.34.0
+fastapi==0.115.0
+httpx==0.24.1
