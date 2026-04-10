@@ -23,7 +23,7 @@ COPY . .
 RUN python stanza_download.py
 
 # Expose your custom port
-EXPOSE 80025
+EXPOSE 8025
 
 # Healthcheck (optional but good)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
