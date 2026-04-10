@@ -1,134 +1,59 @@
-Here is a clean, professional **README.md** tailored to your project. It reflects what your code actually does, not just generic documentation.
+#  Psychological Analysis API
+
+A FastAPI-based system that analyzes conversations and extracts **linguistic, emotional, and psychological insights** using NLP, embeddings, and LLM-based reasoning.
 
 ---
 
-# 🧠 Psychological Analysis API
+#  Quick Start (Recommended – Docker)
 
-A FastAPI-based system that analyzes human conversations to extract **linguistic, emotional, and psychological features** using NLP, embeddings, and LLM-based reasoning.
+If you just want to run the project quickly:
+
+```bash
+git clone <your-repo-url>
+cd project-folder
+
+docker compose up -d --build
+```
+
+Then open:
+
+```
+http://localhost:80025/docs
+```
 
 ---
 
-## 🚀 Overview
+#  Overview
 
-This project processes conversational text (especially therapist–client conversations) and extracts deep psychological insights such as:
+This system analyzes **Client–Assistant conversations** and extracts deep insights such as:
 
-* Sentiment & emotional patterns
-* Cognitive distortions (e.g., catastrophizing, helplessness)
+* Emotional patterns (positive/negative sentiment)
+* Cognitive distortions (catastrophizing, helplessness)
 * Linguistic complexity
-* Topic coherence & shifts
+* Topic coherence and shifts
 * Self-focus and time orientation
 
-It is designed for **mental health analysis, research, and AI-driven behavioral insights**.
+It is designed for:
+
+* Mental health analysis
+* AI therapy systems
+* Behavioral research
+* Emotion-aware applications
 
 ---
 
-## ⚙️ Key Features
+#  How It Works (Simple Flow)
 
-### 1. 🗣 Conversation Processing
-
-* Accepts full conversation input
-* Automatically extracts **Client-only text**
-* Handles multi-line and noisy input formats 
-
----
-
-### 2. 🌍 Multilingual NLP Engine
-
-* Supports:
-
-  * English
-  * Hindi
-  * Marathi
-* Uses **Stanza** for:
-
-  * Tokenization
-  * POS tagging
-  * Dependency parsing 
+1. Extract **Client text** from conversation
+2. Run **NLP processing (Stanza)**
+3. Generate **sentence embeddings**
+4. Analyze psychology using **LLM (Anthropic)**
+5. Compute **49+ features**
+6. Return structured JSON output
 
 ---
 
-### 3. 📊 Feature Extraction (49+ Parameters)
-
-#### 🔤 Linguistic Features
-
-* Word count, vocabulary richness (TTR, MATTR)
-* Sentence length & structure
-* POS ratios (noun, verb, adjective, adverb)
-
-#### 😊 Emotional Features
-
-* Positive / Negative sentiment
-* Fear, sadness, anger estimation
-* Sentiment variance 
-
-#### 🧠 Psychological Signals (LLM-based)
-
-* Absolutist thinking
-* Helplessness
-* Catastrophizing
-* Rumination
-* Avoidance behavior
-* Threat anticipation
-* External locus of control
-* Self-reference density 
-
-#### 🧩 Discourse Features
-
-* Semantic coherence
-* Topic distribution (LDA)
-* Topic shift detection 
-
-#### ⏳ Time Orientation
-
-* Past / Present / Future focus
-
----
-
-### 4. 🤖 Embeddings
-
-* Uses **Sentence Transformers**
-* Multilingual semantic embeddings for deep analysis 
-
----
-
-### 5. ⏱ Latency Tracking
-
-Tracks execution time for:
-
-* NLP processing
-* Embeddings
-* LLM inference
-* Feature extraction 
-
----
-
-### 6. 🔐 Secure API
-
-* API key authentication
-* Input size validation
-* Error-safe responses 
-
----
-
-## 🧱 Project Structure
-
-```
-├── api.py                  # FastAPI endpoints
-├── main.py                 # Pipeline runner with latency tracking
-├── nlp_engine.py           # Language detection + NLP processing
-├── feature_extractor.py    # Core feature extraction (49+ features)
-├── sentiment_emotion.py    # Sentiment analysis
-├── discourse.py            # Coherence & topic modeling
-├── embedder.py             # Sentence embeddings
-├── psychology.py           # LLM-based psychological analysis
-├── indicbert_download.py   # Model download (optional)
-├── stanza_download.py      # Language model setup
-├── requirements.txt        # Dependencies
-```
-
----
-
-## 📦 Installation
+#  Installation (Manual Setup)
 
 ```bash
 git clone <your-repo-url>
@@ -139,9 +64,7 @@ pip install -r requirements.txt
 
 ---
 
-## ⬇️ Download Models
-
-Run:
+#  Download Required Models
 
 ```bash
 python stanza_download.py
@@ -149,7 +72,7 @@ python stanza_download.py
 
 ---
 
-## 🔑 Environment Setup
+#  Environment Setup
 
 Create a `.env` file:
 
@@ -160,56 +83,72 @@ ANTHROPIC_API_KEY=your_anthropic_key
 
 ---
 
-## ▶️ Run the API
+#  Run API (without Docker)
 
 ```bash
 uvicorn api:app --reload
 ```
 
+Open:
+
+```
+http://localhost:8025/docs
+```
+
 ---
 
-## 📡 API Usage
+#  Docker Setup (Recommended)
 
-### Endpoint:
+Build and run:
+
+```bash
+docker compose up -d --build
+```
+
+Check running containers:
+
+```bash
+docker ps
+```
+
+---
+
+#  API Usage
+
+## Endpoint
 
 ```
 POST /analyze
 ```
 
-### Headers:
+## Headers
 
 ```
 x-api-key: your_secret_key
 ```
 
-### Request Body:
+## Request Body
 
 ```json
 {
-  "conversation": "Assistant: Hello...\nClient: I feel very sad..."
+  "conversation": "Assistant: Hello\nClient: I feel very stressed"
 }
 ```
 
 ---
 
-### ✅ Response Example
+##  Response Example
 
 ```json
 {
   "status": "success",
-  "client_text": "I feel very sad...",
+  "client_text": "I feel very stressed",
   "analysis": {
     "total_word_count": 120,
-    "positive_emotion_ratio": 0.3,
-    "negative_emotion_ratio": 0.7,
     "semantic_coherence_score": 0.82,
-    "catastrophizing_score": 0.4,
-    ...
+    "catastrophizing_score": 0.4
   },
   "latency": {
-    "nlp_time": 0.45,
-    "embedding_time": 0.32,
-    "llm_total_time": 1.2,
     "total_time": 2.1
   }
 }
@@ -217,58 +156,130 @@ x-api-key: your_secret_key
 
 ---
 
-## 🧪 Running via CLI
+#  Input Format Requirement
 
-```bash
-python main.py
+
+To help you understand the expected input format, an example file is included:
+
+```text
+demo.txt
 ```
 
-Paste conversation input and get:
-
-* Extracted client text
-* Feature analysis
-* Latency breakdown
+This file contains sample conversations in the correct format (single-line, labeled with `Client:` and `Assistant:`).
 
 ---
 
-## 📌 Input Format Requirement
+##  How to Use
 
-Conversation must include:
-
-```
-Client: ...
-Assistant: ...
-```
-
-Only **Client text** is analyzed.
+1. Open `demo.txt`
+2. Copy any conversation (English / Marathi / Hindi)
+3. Send it as input to the API
 
 ---
 
-## 🛠 Technologies Used
+##  Input Format Rules
+
+* Conversation must be in **single line**
+* Must include labels:
+
+  ```text
+  Client: ...
+  Assistant: ...
+  ```
+* Do not mix multiple languages in one input
+* Only **Client text** will be analyzed internally
+
+---
+
+##  Example API Request
+
+```json
+{
+  "conversation": "Client: I feel stressed and anxious Assistant: Tell me more about that feeling"
+}
+```
+
+---
+
+This file is especially useful for:
+
+* First-time users
+* Testing API quickly
+* Understanding correct formatting
+
+
+---
+
+#  Test API Quickly
+
+Open Swagger UI:
+
+```
+http://localhost:8025/docs
+```
+
+---
+
+#  Project Structure
+
+```
+├── api.py
+├── main.py
+├── nlp_engine.py
+├── feature_extractor.py
+├── sentiment_emotion.py
+├── discourse.py
+├── embedder.py
+├── psychology.py
+├── stanza_download.py
+├── requirements.txt
+```
+
+---
+
+# Technologies Used
 
 * FastAPI
 * Stanza NLP
 * Sentence Transformers
 * HuggingFace Transformers
-* Scikit-learn (LDA)
-* Anthropic Claude (LLM reasoning)
+* Scikit-learn
+* Anthropic Claude (LLM)
 * NumPy
 
 ---
 
-## 🎯 Use Cases
+#  Limitations
 
-* Mental health analysis systems
-* AI therapy assistants
-* Behavioral research
-* Emotion-aware chatbots
-* Psychological profiling tools
+* Requires properly formatted input
+* Heavy models → needs good RAM (6GB+ recommended)
+* LLM calls depend on API key
 
 ---
 
-## ⚠️ Limitations
+#  Use Cases
 
-* Requires properly formatted conversation input
+* Mental health analytics
+* AI therapy assistants
+* Behavioral research tools
+* Emotion-aware chatbots
 
+---
 
+#  Security Note
 
+Never expose your `.env` file publicly.
+
+---
+
+# Summary
+
+This project combines:
+
+* NLP
+* Deep learning
+* LLM reasoning
+
+to generate structured psychological insights from conversations.
+
+---
