@@ -18,7 +18,7 @@ docker compose up -d --build
 Then open:
 
 ```
-http://localhost:80025/docs
+http://localhost:8025/docs
 ```
 
 ---
