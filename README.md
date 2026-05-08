@@ -1,285 +1,261 @@
-#  Psychological Analysis API
+# Mental Health NLP Analyzer API
 
-A FastAPI-based system that analyzes conversations and extracts **linguistic, emotional, and psychological insights** using NLP, embeddings, and LLM-based reasoning.
-
----
-
-#  Quick Start (Recommended – Docker)
-
-If you just want to run the project quickly:
-
-```bash
-git clone <your-repo-url>
-cd project-folder
-
-docker compose up -d --build
-```
-
-Then open:
-
-```
-http://localhost:8025/docs
-```
+A production-ready FastAPI-based API that analyzes multilingual conversations and extracts linguistic, emotional, discourse, and psychological features using NLP and Deep Learning models.
 
 ---
 
-#  Overview
+# Features
 
-This system analyzes **Client–Assistant conversations** and extracts deep insights such as:
+* Multilingual Support:
 
-* Emotional patterns (positive/negative sentiment)
-* Cognitive distortions (catastrophizing, helplessness)
-* Linguistic complexity
-* Topic coherence and shifts
-* Self-focus and time orientation
+  * English
+  * Hindi
+  * Marathi
 
-It is designed for:
+* NLP Feature Extraction
 
-* Mental health analysis
-* AI therapy systems
-* Behavioral research
-* Emotion-aware applications
+* Emotion Detection
 
----
+* Psychological Pattern Analysis
 
-#  How It Works (Simple Flow)
+* Semantic Coherence Analysis
 
-1. Extract **Client text** from conversation
-2. Run **NLP processing (Stanza)**
-3. Generate **sentence embeddings**
-4. Analyze psychology using **LLM (Anthropic)**
-5. Compute **49+ features**
-6. Return structured JSON output
+* Topic Shift Detection
+
+* 49 Structured Mental Health Features
 
 ---
 
-#  Installation (Manual Setup)
+# API Endpoint
 
-```bash
-git clone <your-repo-url>
-cd project-folder
+## POST `/analyze`
 
-pip install -r requirements.txt
-```
+Analyzes client conversation text and returns structured psychological and linguistic features.
 
 ---
 
-#  Download Required Models
-
-```bash
-python stanza_download.py
-```
-
----
-
-#  Environment Setup
-
-Create a `.env` file:
-
-```
-API_KEY=your_secret_key
-ANTHROPIC_API_KEY=your_anthropic_key
-```
-
----
-
-#  Run API (without Docker)
-
-```bash
-uvicorn api:app --reload
-```
-
-Open:
-
-```
-http://localhost:8025/docs
-```
-
----
-
-#  Docker Setup (Recommended)
-
-Build and run:
-
-```bash
-docker compose up -d --build
-```
-
-Check running containers:
-
-```bash
-docker ps
-```
-
----
-
-#  API Usage
-
-## Endpoint
-
-```
-POST /analyze
-```
-
-## Headers
-
-```
-x-api-key: your_secret_key
-```
-
-## Request Body
+# Request Format
 
 ```json
 {
-  "conversation": "Assistant: Hello\nClient: I feel very stressed"
+  "text": "Client: I feel anxious and worried these days."
 }
 ```
 
 ---
 
-##  Response Example
+# Response Format
 
 ```json
 {
   "status": "success",
-  "client_text": "I feel very stressed",
-  "analysis": {
+  "features": {
     "total_word_count": 120,
-    "semantic_coherence_score": 0.82,
-    "catastrophizing_score": 0.4
-  },
-  "latency": {
-    "total_time": 2.1
+    "unique_word_count": 80,
+    "Overall Sentiment Score": -0.42
   }
 }
 ```
 
 ---
 
-#  Input Format Requirement
+# How to Run
 
+## Local Setup
 
-To help you understand the expected input format, an example file is included:
+### 1. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Download Stanza Models
+
+```bash
+python stanza_download.py
+```
+
+### 3. Run API
+
+```bash
+uvicorn app:app --host 0.0.0.0 --port 8025
+```
+
+API will start at:
 
 ```text
-demo.txt
+http://localhost:8025
 ```
 
-This file contains sample conversations in the correct format (single-line, labeled with `Client:` and `Assistant:`).
+Swagger Documentation:
 
----
-
-##  How to Use
-
-1. Open `demo.txt`
-2. Copy any conversation (English / Marathi / Hindi)
-3. Send it as input to the API
-
----
-
-##  Input Format Rules
-
-* Conversation must be in **single line**
-* Must include labels:
-
-  ```text
-  Client: ...
-  Assistant: ...
-  ```
-* Do not mix multiple languages in one input
-* Only **Client text** will be analyzed internally
-
----
-
-##  Example API Request
-
-```json
-{
-  "conversation": "Client: I feel stressed and anxious Assistant: Tell me more about that feeling"
-}
-```
-
----
-
-This file is especially useful for:
-
-* First-time users
-* Testing API quickly
-* Understanding correct formatting
-
-
----
-
-#  Test API Quickly
-
-Open Swagger UI:
-
-```
+```text
 http://localhost:8025/docs
 ```
 
 ---
 
-#  Project Structure
+# Docker Setup
 
-```
-├── api.py
-├── main.py
-├── nlp_engine.py
-├── feature_extractor.py
-├── sentiment_emotion.py
-├── discourse.py
-├── embedder.py
-├── psychology.py
-├── stanza_download.py
-├── requirements.txt
+```bash
+docker compose up --build
 ```
 
 ---
 
-# Technologies Used
+# How to Use
+
+Example API request using Python requests library:
+
+```python
+import requests
+import json
+
+url = "http://localhost:8025/analyze"
+
+payload = {
+    "text": "Client: I feel very stressed and anxious these days."
+}
+
+headers = {
+    "x-api-key": "your_secure_api_key"
+}
+
+response = requests.post(
+    url,
+    json=payload,
+    headers=headers
+)
+
+print(response.json())
+```
+
+---
+
+# Required Files
+
+## payload.json
+
+Contains sample API input payload.
+
+Example:
+
+```json
+{
+  "text": "Client: I feel anxious and overthink everything."
+}
+```
+
+---
+
+## output.json
+
+Contains sample API response.
+
+---
+
+## run.py
+
+Ready-to-run script that:
+
+* Reads payload.json
+* Calls API
+* Prints API response
+
+Run using:
+
+```bash
+python run.py
+```
+
+---
+
+# Environment Variables
+
+Create a `.env` file:
+
+```env
+MENTAL_HEALTH_ANALYZER_KEY=your_secure_generated_api_key
+```
+
+---
+
+# example.env
+
+```env
+MENTAL_HEALTH_ANALYZER_KEY=replace_with_your_api_key
+```
+
+Do NOT commit actual `.env` files.
+
+---
+
+# Project Structure
+
+```text
+Mental_health/
+│
+├── app.py
+├── run.py
+├── payload.json
+├── output.json
+├── README.md
+├── requirements.txt
+├── example.env
+├── .env
+├── .gitignore
+├── Dockerfile
+├── docker-compose.yml
+│── main.py
+├── feature_extractor.py
+├── discourse.py
+├── psychology.py
+├── sentiment_emotion.py
+├── embedder.py
+├── nlp_engine.py
+├── stanza_download.py
+└── emotion_model_download.py
+```
+
+---
+
+# Tech Stack
 
 * FastAPI
 * Stanza NLP
-* Sentence Transformers
 * HuggingFace Transformers
+* Sentence Transformers
 * Scikit-learn
-* Anthropic Claude (LLM)
 * NumPy
+* PyTorch
 
 ---
 
-#  Limitations
+# Security
 
-* Requires properly formatted input
-* Heavy models → needs good RAM (6GB+ recommended)
-* LLM calls depend on API key
-
----
-
-#  Use Cases
-
-* Mental health analytics
-* AI therapy assistants
-* Behavioral research tools
-* Emotion-aware chatbots
+* API authentication enabled using API keys
+* Environment variables stored using `.env`
+* Do not expose secret keys publicly
 
 ---
 
-#  Security Note
+# Production Notes
 
-Never expose your `.env` file publicly.
+* Recommended RAM: 4GB–8GB
+* GPU optional
+* First startup may take time because NLP models are downloaded
+
+---
+
+# Use Cases
+
+* Mental Health Analytics
+* AI Therapy Assistants
+* Behavioral Research
+* Emotion-Aware Chatbots
 
 ---
 
-# Summary
+# Author
 
-This project combines:
-
-* NLP
-* Deep learning
-* LLM reasoning
-
-to generate structured psychological insights from conversations.
-
----
+Sakshi Lande

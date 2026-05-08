@@ -1,12 +1,27 @@
 import stanza
+import logging
 
-stanza.download("en")# Download English
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-# Download Hindi
-stanza.download("hi")
+LANGUAGES = ["en", "hi", "mr"]
+PROCESSORS = "tokenize,pos,lemma,depparse"
 
-# Download Marathi
-stanza.download("mr")
 
-print("✅ All Stanza language models downloaded successfully!")
+def download_stanza_models():
+    """
+    Download required Stanza models safely.
+    """
+    for lang in LANGUAGES:
+        try:
+            logger.info(f"Downloading {lang} model...")
+            stanza.download(lang, processors=PROCESSORS)
+            logger.info(f"✅ {lang} downloaded")
+        except Exception:
+            logger.exception(f"❌ Failed to download {lang}")
 
+    logger.info("🎯 Stanza setup complete")
+
+
+if __name__ == "__main__":
+    download_stanza_models()

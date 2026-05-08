@@ -1,0 +1,90 @@
+
+{
+  "status": "success",
+  "features": {
+    "total_word_count": 156,
+    "unique_word_count": 98,
+    "type_token_ratio": 0.628,
+    "moving_average_ttr": 0.712,
+    "hapax_legomena_ratio": 0.214,
+    "sentence_count": 12,
+    "average_sentence_length": 13.0,
+    "repetition_ratio": 0.372,
+
+    "noun_ratio": 0.142,
+    "verb_ratio": 0.187,
+    "adjective_ratio": 0.064,
+    "adverb_ratio": 0.051,
+    "pronoun_ratio": 0.109,
+    "modal_verb_ratio": 0.026,
+    "negation_ratio": 0.019,
+
+    "parse_tree_depth": 4.83,
+    "avg_dependency_length": 2.91,
+    "clause_count": 12,
+    "subordinate_clause_ratio": 0.33,
+
+    "Positive Emotion Word Ratio": 0.182,
+    "Negative Emotion Word Ratio": 0.491,
+    "Overall Sentiment Score": -0.309,
+
+    "Fear Frequency": 0.163,
+    "Sadness Frequency": 0.221,
+    "Anger Frequency": 0.041,
+    "Joy Frequency": 0.182,
+    "Disgust Frequency": 0.066,
+    "Surprise Frequency": 0.027,
+
+    "Emotional Intensity Ratio": 0.742,
+    "Max Negative Emotion": 0.883,
+    "Negative Emotion Spike Count": 3.0,
+
+    "sentiment_variance": 0.052,
+    "sentiment_trend_slope": -0.014,
+    "emotional_volatility_score": 0.014,
+
+    "semantic_coherence_score": 0.812,
+    "topic_distribution_vector": [
+      0.214,
+      0.173,
+      0.198,
+      0.245,
+      0.170
+    ],
+    "topic_shift_frequency": 0.087,
+
+    "sentence_embedding_vector": [
+      -0.024,
+      0.112,
+      -0.081,
+      0.056,
+      0.149,
+      -0.062,
+      0.038,
+      -0.097,
+      0.071,
+      0.115
+    ],
+
+    "max_sentence_similarity": 0.913,
+    "first_last_sentence_similarity": 0.701,
+
+    "absolutist_score": 0.544,
+    "helplessness_score": 0.487,
+    "catastrophizing_score": 0.621,
+    "external_locus_score": 0.402,
+    "rumination_score": 0.693,
+    "uncertainty_score": 0.574,
+    "avoidance_score": 0.318,
+    "threat_score": 0.529,
+
+    "self_reference_density": 0.144,
+    "past_focus_ratio": 0.25,
+    "present_focus_ratio": 0.50,
+    "future_focus_ratio": 0.25,
+
+    "filler_ratio": 0.013,
+    "cognitive_load_score": 17.83
+  }
+}
+

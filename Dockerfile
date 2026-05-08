@@ -1,33 +1,26 @@
 FROM python:3.10-slim
 
+RUN apt-get update && apt-get install -y 
+build-essential 
+curl 
+&& rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# Better logging (important for production)
-ENV PYTHONUNBUFFERED=1
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    build-essential \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
-COPY . .
+RUN pip install --no-cache-dir --upgrade pip 
+&& pip install --no-cache-dir -r requirements.txt
 
-# Download NLP models (required for your project)
+# Download models at build time
+
+COPY stanza_download.py .
 RUN python stanza_download.py
 
-# Expose your custom port
+COPY . .
+
+
+
 EXPOSE 8025
 
-# Healthcheck (optional but good)
-HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
-  CMD curl -f http://localhost:8025/ || exit 1
-
-# Start FastAPI
-CMD ["python", "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8025"]
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8025"]
