@@ -256,6 +256,4 @@ Mental_health/
 
 ---
 
-# Author
 
-Sakshi Lande
