@@ -90,9 +90,9 @@ def extract(text, nlp, embs, psych):
         "verb_ratio": nlp["verb_ratio"],
         "adjective_ratio": nlp["adj_ratio"],
         "adverb_ratio": nlp["adv_ratio"],
-        "pronoun_ratio": nlp["pronoun_ratio"],
-        "modal_verb_ratio": nlp["modal_ratio"],
-        "negation_ratio": nlp["negation_ratio"],
+        "first_person_singular_pronoun_frequency": nlp["pronoun_ratio"],
+        "modal_verb_frequency": nlp["modal_ratio"],
+        "negative_frequency": nlp["negation_ratio"],
 
         # 16–19 Syntax
         "parse_tree_depth": nlp["parse_tree_depth"],
@@ -101,23 +101,23 @@ def extract(text, nlp, embs, psych):
         "subordinate_clause_ratio": nlp["subordinate_clause_ratio"],
 
         # 20–34 Emotion (ALL 15 ✅)
-        "Positive Emotion Word Ratio": emotion["Positive Emotion Word Ratio"],
-        "Negative Emotion Word Ratio": emotion["Negative Emotion Word Ratio"],
-        "Overall Sentiment Score": emotion["Overall Sentiment Score"],
+        "positive_emotion_word_ratio": emotion["Positive Emotion Word Ratio"],
+        "negative_emotion_word_ratio": emotion["Negative Emotion Word Ratio"],
+        "overall_sentiment_score": emotion["Overall Sentiment Score"],
 
-        "Fear Frequency": emotion["Fear Frequency"],
-        "Sadness Frequency": emotion["Sadness Frequency"],
-        "Anger Frequency": emotion["Anger Frequency"],
-        "Joy Frequency": emotion["Joy Frequency"],
-        "Disgust Frequency": emotion["Disgust Frequency"],
-        "Surprise Frequency": emotion["Surprise Frequency"],
+        "fear_word_frequency": emotion["Fear Frequency"],
+        "sadness_word_frequency": emotion["Sadness Frequency"],
+        "anger_word_frequency": emotion["Anger Frequency"],
+        "joy_frequency": emotion["Joy Frequency"],
+        "disgust_frequency": emotion["Disgust Frequency"],
+        "surprise_frequency": emotion["Surprise Frequency"],
 
-        "Emotional Intensity Ratio": emotion["Emotional Intensity Ratio"],
-        "Max Negative Emotion": emotion["Max Negative Emotion"],
-        "Negative Emotion Spike Count": emotion["Negative Emotion Spike Count"],
+        "emotional_intensity_ratio": emotion["Emotional Intensity Ratio"],
+        "max_negative_emotion": emotion["Max Negative Emotion"],
+        "negative_emotion_spike_count": emotion["Negative Emotion Spike Count"],
 
         "sentiment_variance": sentiment_variance,
-        "sentiment_trend_slope": sentiment_slope,
+        "sentiment_trajectory_slope": sentiment_slope,
         "emotional_volatility_score": emotional_volatility_score,
 
         # 35–40 Semantics
@@ -129,18 +129,18 @@ def extract(text, nlp, embs, psych):
         "first_last_sentence_similarity": first_last_sim,
 
         # 41–49 Psychology & Cognitive
-        "absolutist_score": avg("absolutist_score"),
-        "helplessness_score": avg("helplessness_score"),
-        "catastrophizing_score": avg("catastrophizing_score"),
-        "external_locus_score": avg("external_locus_score"),
-        "rumination_score": avg("rumination_score"),
-        "uncertainty_score": avg("uncertainty_score"),
-        "avoidance_score": avg("avoidance_score"),
-        "threat_score": avg("threat_score"),
+        "absolutist_word_frequency": avg("absolutist_score"),
+        "helplessness_phrase_frequency": avg("helplessness_score"),
+        "catastrophizing_indicators": avg("catastrophizing_score"),
+        "external_locus_of_control_score": avg("external_locus_score"),
+        "rumination_phrase_frequency": avg("rumination_score"),
+        "uncertainty_word_frequency": avg("uncertainty_score"),
+        "avoidance_language_frequency": avg("avoidance_score"),
+        "threat_anticipation_language": avg("threat_score"),
         "self_reference_density": nlp["self_reference_density"],
-        "past_focus_ratio": past,
-        "present_focus_ratio": present,
-        "future_focus_ratio": future,
-        "filler_ratio": nlp["filler_ratio"],
+        "past_focused_word_ratio": past,
+        "present_focused_word_ratio": present,
+        "future_focused_word_ratio": future,
+        "filler_word_frequency": nlp["filler_ratio"],
         "cognitive_load_score": nlp["cognitive_load_score"]
     }
