@@ -26,8 +26,10 @@ def extract_client_text(text: str) -> str:
 
 if __name__ == "__main__":
     conversation = sys.stdin.read()
-
+    
     client_text = extract_client_text(conversation)
+    if not client_text.strip():
+        client_text = conversation
     sentences = [s.strip() for s in client_text.split("\n") if s.strip()]
 
     nlp_result = analyze(client_text)

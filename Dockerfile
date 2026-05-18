@@ -28,7 +28,7 @@ COPY . .
 RUN python stanza_download.py
 
 # Download HuggingFace emotion model
-RUN python indicbert_extractor.py
+RUN python emotion_model_download.py
 
 # Expose FastAPI port
 EXPOSE 8025
