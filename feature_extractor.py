@@ -123,8 +123,10 @@ def extract(text, nlp, embs, psych):
         # 35–40 Semantics
         "semantic_coherence_score": sem_coh,
         "topic_distribution_vector": topics,
-        "topic_shift_frequency": tshift,
-        "sentence_embedding_vector": embs.mean(axis=0)[:10].tolist(),
+        "sentence_embedding_vector": (
+             embs.mean(axis=0)[:10].tolist()
+             if len(embs) > 0 else [0.0] * 10
+       ),
         "max_sentence_similarity": max_sim,
         "first_last_sentence_similarity": first_last_sim,
 

@@ -1,28 +1,43 @@
 version: "3.9"
 
 services:
-mental-health-api:
-build: .
-container_name: mental-health-api
-ports:
-- "8025:8025"   
+  mental-health-api:
+    container_name: mental-health-api
 
-```
-restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
 
-environment:
-  - PYTHONUNBUFFERED=1
+    ports:
+      - "8025:8025"
 
-deploy:
-  resources:
-    limits:
-      memory: 4g
-    reservations:
-      memory: 2g
+    env_file:
+      - .env
 
-healthcheck:
-  test: ["CMD", "curl", "-f", "http://localhost:8025/docs"]  
-  interval: 30s
-  timeout: 10s
-  retries: 3
-```
+    restart: unless-stopped
+
+    command: >
+      uvicorn app:app
+      --host 0.0.0.0
+      --port 8025
+      --workers 1
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8025/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+        reservations:
+          memory: 2G
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
